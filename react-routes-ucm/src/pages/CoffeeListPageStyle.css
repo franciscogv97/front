@@ -1,0 +1,65 @@
+
+  
+  .coffee-list-container {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  .search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .coffee-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .coffee-item {
+    width: 22%;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .coffee-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .coffee-price {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  
+  .opinions-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .opinions-button:hover {
+    background-color: #0056b3;
+  }
+  
+  footer {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    width: 100%;
+  }
+  
