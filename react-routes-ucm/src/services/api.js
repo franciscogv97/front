@@ -1,9 +1,9 @@
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 
 export async function getUsers() {
     const res = await fetch("https://randomuser.me/api/?results=10");
     const data = await res.json();
-    return data;
+    return data.results; // Asegúrate de devolver los resultados correctos
 }
 
 export async function loginAccount(login) {
@@ -42,8 +42,6 @@ export async function loginAccount(login) {
     }
 }
 
-
-// register = {username: 'user', password: 'password', email: 'email@example.com'}
 export async function registerAccount(register) {
     try {
         const res = await fetch("http://localhost:8085/api/auth/create", {
@@ -69,7 +67,6 @@ export async function registerAccount(register) {
     }
 }
 
-//mostrar
 export async function getCoffeeList() {
     try {
         const res = await fetch("http://localhost:8085/api/coffee/list");
@@ -81,5 +78,46 @@ export async function getCoffeeList() {
     } catch (error) {
         console.error('Error fetching coffee list:', error);
         return [];
+    }
+}
+
+export async function logoutAccount() {
+    try {
+        const res = await fetch("http://localhost:8085/api/auth/logout", {
+            method: "POST",
+            credentials: "include" // Esto asegura que las cookies se incluyan con la solicitud
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        localStorage.removeItem('token'); // Remove token from local storage
+        return true;
+    } catch (error) {
+        console.error('Error during logout:', error);
+        return false;
+    }
+}
+
+export async function updateUser(user) {
+    try {
+        const res = await fetch("http://localhost:8085/api/auth/update", {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        return await res.json();
+    } catch (error) {
+        console.error('Error updating user:', error);
+        throw error;
     }
 }

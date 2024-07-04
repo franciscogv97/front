@@ -1,0 +1,24 @@
+.manage-clients-container {
+    padding: 20px;
+  }
+  
+  .clients-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  .clients-table th, .clients-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .clients-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  

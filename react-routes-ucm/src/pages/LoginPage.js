@@ -13,11 +13,12 @@ const LoginPage = ({ setUserRole }) => {
       const decodedToken = await loginAccount(credentials);
       if (decodedToken) {
         console.log('Login successful:', decodedToken);
-        setUserRole(decodedToken.role);
+        const userRole = decodedToken.roles[0]; // Acceder al primer rol en el array de roles
+        setUserRole(userRole);
         localStorage.setItem('token', decodedToken.token); // Asegúrate de que el token se almacena
         navigate('/'); // Redirigir a Home después de un inicio de sesión exitoso
       } else {
-        setError('credenciales erroneas');
+        setError('Credenciales erróneas');
       }
     } catch (error) {
       setError(error.message);
@@ -30,7 +31,7 @@ const LoginPage = ({ setUserRole }) => {
 
   return (
     <div className="login-container">
-      <h1>INICIO SESION</h1>
+      <h1>INICIO SESIÓN</h1>
       {error && <p className="error-message">{error}</p>}
       <input
         type="text"

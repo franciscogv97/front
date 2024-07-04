@@ -1,25 +1,43 @@
-function Page2(){
-    return <>
-        <h3>Pagina 2</h3>
-        <h3>Ejercicio 1 (Page 1)</h3>
-        <p>
-            Crea un componente Usuario que por medio de props reciba los datos 
-            de cada persona.<br />
-            Utiliza un diseño similar al de whatsapps
-        </p>
-        <h3>Ejercicio 2 (Page 2)</h3>
-        <p>
-            crea un metodo en services que permita obtener todos los
-            paises<br/>
-            Crea un componente CardFlag que muestre los datos en una card,
-            imagen de la bandera, nombre, capital y otros datos.<br/>
-            En el page 2 muestra cada card (4 card por fila) para ello investiga 
-            el uso de display:grid en css.
-            
-        </p>
+import React from 'react';
+import './Page2.css';
 
-    </>
+function Page2() {
+    return (
+        <>
+      
+            <div className="about-container">
+                <h1>Acerca de Nosotros</h1>
+                <div className="columns">
+                    <section>
+                        <h2>Nuestra Historia</h2>
+                        <p>
+                            Bienvenidos a [Nombre de la Cafetería], un lugar donde el aroma del café se mezcla con la pasión y dedicación de nuestros baristas. Fundada en [año de fundación], nuestra cafetería ha sido un refugio acogedor para los amantes del café, ofreciendo una experiencia única en cada taza.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Nuestra Misión</h2>
+                        <p>
+                            Nuestra misión es proporcionar un café excepcional, preparado con los mejores granos seleccionados cuidadosamente de las mejores fincas del mundo. Creemos en la importancia de la calidad, la sostenibilidad y el impacto positivo en nuestras comunidades locales y globales.
+                        </p>
+                    </section>
+                </div>
+                <div className="columns">
+                    <section>
+                        <h2>Nuestra Visión</h2>
+                        <p>
+                            Aspiramos a ser más que una simple cafetería. Queremos ser un lugar donde las personas se reúnan, compartan historias y creen recuerdos inolvidables, todo mientras disfrutan de una taza de café perfecta.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Nuestros Valores</h2>
+                        <p>
+                            Nos basamos en valores como la calidad, la integridad, y la sostenibilidad, buscando siempre mejorar la experiencia de nuestros clientes y apoyar a nuestras comunidades.
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </>
+    );
 }
 
-
-export {Page2};
+export { Page2 };
