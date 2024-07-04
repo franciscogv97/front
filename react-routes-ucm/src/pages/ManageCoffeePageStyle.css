@@ -1,0 +1,94 @@
+.manage-coffee-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .manage-coffee-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sort-controls {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sort-controls button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sort-controls button:hover {
+    background-color: #0056b3;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .coffee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .coffee-table th, .coffee-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .coffee-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .coffee-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .coffee-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .coffee-table .edit-button, .coffee-table .delete-button {
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .coffee-table .edit-button {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .coffee-table .edit-button:hover {
+    background-color: #218838;
+  }
+  
+  .coffee-table .delete-button {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .coffee-table .delete-button:hover {
+    background-color: #c82333;
+  }
+  
+  footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #777;
+  }
+  

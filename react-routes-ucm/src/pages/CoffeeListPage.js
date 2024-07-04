@@ -21,7 +21,7 @@ const CoffeeListPage = () => {
 
   return (
     <div className="coffee-list-container">
-      <input type="text" placeholder="Nombre Coffee" className="search-bar" />
+      
       <div className="coffee-list">
         {error && <p className="error-message">{error}</p>}
         {coffees.map((coffee, index) => (

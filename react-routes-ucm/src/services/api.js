@@ -1,9 +1,17 @@
 import {jwtDecode} from "jwt-decode";
-
 export async function getUsers() {
-    const res = await fetch("https://randomuser.me/api/?results=10");
-    const data = await res.json();
-    return data.results; // Asegúrate de devolver los resultados correctos
+    try {
+        const res = await fetch("http://localhost:8085/api/users");
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const data = await res.json();
+        console.log('Usuarios obtenidos:', data); // Agregar un log para verificar los datos
+        return data;
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        return [];
+    }
 }
 
 export async function loginAccount(login) {

@@ -11,6 +11,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import CoffeeListPage from './pages/CoffeeListPage';
 import ManageClientsPage from './pages/ManageClientsPage';
+import ManageCoffeePage from './pages/ManageCoffeePage'; // Importar el nuevo componente
 
 function App() {
   const [userRole, setUserRole] = useState(null); // Estado para almacenar el rol del usuario
@@ -34,6 +35,7 @@ function App() {
           <Route path="/login" element={<LoginPage setUserRole={setUserRole} />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/manage-clients" element={userRole === 'ADMIN' ? <ManageClientsPage /> : <Navigate to="/" />} />
+          <Route path="/manage-coffees" element={userRole === 'ADMIN' ? <ManageCoffeePage /> : <Navigate to="/" />} /> {/* Nueva ruta */}
           <Route path="*" element={<p>Ups, no existe la ruta</p>} />
         </Routes>
       </HashRouter>

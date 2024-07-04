@@ -10,7 +10,9 @@ const ManageClientsPage = () => {
     const fetchClients = async () => {
       try {
         const data = await getUsers();
-        setClients(data);
+        // Filtrar solo los clientes con el rol "CLIENT"
+        const clientData = data.filter(user => user.roles.includes('CLIENT'));
+        setClients(clientData);
       } catch (error) {
         setError('Error fetching client list');
       }
