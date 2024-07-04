@@ -129,3 +129,48 @@ export async function updateUser(user) {
         throw error;
     }
 }
+
+
+export async function deleteCoffee(idCoffee) {
+    try {
+      const res = await fetch(`http://localhost:8085/api/coffee/deleteCoffee/${idCoffee}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+  
+      return await res.json();
+    } catch (error) {
+      console.error('Error deleting coffee:', error);
+      throw error;
+    }
+  }
+  
+  export async function updateCoffee(coffee) {
+    try {
+      const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+      const res = await fetch('http://localhost:8085/api/coffee/updateCoffee', {
+        method: 'PUT',
+        body: JSON.stringify(coffee),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` // Incluir el token en los encabezados si es necesario
+        },
+      });
+  
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+  
+      return await res.json();
+    } catch (error) {
+      console.error('Error updating coffee:', error);
+      throw error;
+    }
+  }
+  
