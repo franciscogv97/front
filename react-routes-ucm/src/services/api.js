@@ -1,7 +1,13 @@
 import {jwtDecode} from "jwt-decode";
 export async function getUsers() {
     try {
-        const res = await fetch("http://localhost:8085/api/users");
+        const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+        const res = await fetch("http://localhost:8085/api/auth/clientes", {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}` // Incluir el token en los encabezados
+            }
+        });
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
@@ -13,6 +19,7 @@ export async function getUsers() {
         return [];
     }
 }
+
 
 export async function loginAccount(login) {
     try {
@@ -180,4 +187,49 @@ export async function deleteCoffee(idCoffee) {
       throw error;
     }
   }
+
+  export async function lockUser(username) {
+    try {
+        const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+        const res = await fetch(`http://localhost:8085/api/auth/lock?username=${username}`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}` // Incluir el token en los encabezados
+            }
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        return await res.json();
+    } catch (error) {
+        console.error('Error locking user:', error);
+        throw error;
+    }
+}
+
+export async function unlockUser(username) {
+    try {
+        const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+        const res = await fetch(`http://localhost:8085/api/auth/unlock?username=${username}`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}` // Incluir el token en los encabezados
+            }
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        return await res.json();
+    } catch (error) {
+        console.error('Error unlocking user:', error);
+        throw error;
+    }
+}
+
   
