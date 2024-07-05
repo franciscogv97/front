@@ -167,7 +167,7 @@ const ManageCoffeePage = () => {
             <tbody>
               {coffees.map((coffee, index) => (
                 <tr key={index}>
-                  <td>{coffee.idCoffee}</td> {/* Ajustar el nombre de la propiedad según sea necesario */}
+                  <td>{coffee.idCoffee}</td> {}
                   <td>{coffee.name}</td>
                   <td>{coffee.description}</td>
                   <td>${coffee.price}</td>

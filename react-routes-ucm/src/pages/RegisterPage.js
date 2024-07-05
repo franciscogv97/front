@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importar el hook useNavigate
-import { registerAccount } from '../services/api'; // Asegúrate de que la ruta es correcta
-import './RegisterPageStyle.css'; // Crear y aplicar estilos si es necesario
+import { useNavigate } from 'react-router-dom'; 
+import { registerAccount } from '../services/api'; 
+import './RegisterPageStyle.css'; 
 
 const RegisterPage = () => {
   const [credentials, setCredentials] = useState({ username: '', password: '', email: '' });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-  const navigate = useNavigate(); // Inicializar el hook useNavigate
+  const navigate = useNavigate(); 
 
   const register = async () => {
     try {

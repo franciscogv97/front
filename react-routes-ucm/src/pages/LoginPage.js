@@ -13,10 +13,10 @@ const LoginPage = ({ setUserRole }) => {
       const decodedToken = await loginAccount(credentials);
       if (decodedToken) {
         console.log('Login successful:', decodedToken);
-        const userRole = decodedToken.roles[0]; // Acceder al primer rol en el array de roles
+        const userRole = decodedToken.roles[0]; 
         setUserRole(userRole);
-        localStorage.setItem('token', decodedToken.token); // Asegúrate de que el token se almacena
-        navigate('/'); // Redirigir a Home después de un inicio de sesión exitoso
+        localStorage.setItem('token', decodedToken.token); 
+        navigate('/'); 
       } else {
         setError('Credenciales erróneas');
       }

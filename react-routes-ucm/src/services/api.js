@@ -1,18 +1,19 @@
-import {jwtDecode} from "jwt-decode";
+import {jwtDecode} from 'jwt-decode';
+
 export async function getUsers() {
     try {
-        const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+        const token = localStorage.getItem('token'); 
         const res = await fetch("http://localhost:8085/api/auth/clientes", {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}` // Incluir el token en los encabezados
+                "Authorization": `Bearer ${token}` 
             }
         });
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
         const data = await res.json();
-        console.log('Usuarios obtenidos:', data); // Agregar un log para verificar los datos
+        console.log('Usuarios obtenidos:', data);
         return data;
     } catch (error) {
         console.error('Error fetching users:', error);
@@ -20,18 +21,16 @@ export async function getUsers() {
     }
 }
 
-
 export async function loginAccount(login) {
     try {
         const res = await fetch("http://localhost:8085/api/auth/login", {
             method: "POST",
-            body: JSON.stringify(login), // Convertir objeto a cadena JSON
+            body: JSON.stringify(login), 
             headers: {
-                "Content-Type": "application/json" // Corregir el encabezado
+                "Content-Type": "application/json" 
             }
         });
 
-        // Verifica si la respuesta es exitosa
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
@@ -40,11 +39,9 @@ export async function loginAccount(login) {
         console.log(data);
 
         if (data.token) {
-            // Decodificar el token para obtener el rol del usuario
+        
             const decodedToken = jwtDecode(data.token);
             console.log('Decoded Token:', decodedToken);
-
-            // Almacenar el token en el almacenamiento local o en el estado
             localStorage.setItem('token', data.token);
 
             return decodedToken;
@@ -61,13 +58,12 @@ export async function registerAccount(register) {
     try {
         const res = await fetch("http://localhost:8085/api/auth/create", {
             method: "POST",
-            body: JSON.stringify(register), // Convertir objeto a cadena JSON
+            body: JSON.stringify(register), 
             headers: {
-                "Content-Type": "application/json" // Corregir el encabezado
+                "Content-Type": "application/json" 
             }
         });
 
-        // Verifica si la respuesta es exitosa
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
@@ -87,7 +83,7 @@ export async function getCoffeeList() {
         const res = await fetch("http://localhost:8085/api/coffee/list", {
             headers: {
                 "Content-Type": "application/json",
-                // Agregar el encabezado de autorización si es necesario
+             
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             }
         });
@@ -106,14 +102,14 @@ export async function logoutAccount() {
     try {
         const res = await fetch("http://localhost:8085/api/auth/logout", {
             method: "POST",
-            credentials: "include" // Esto asegura que las cookies se incluyan con la solicitud
+            credentials: "include" 
         });
 
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
 
-        localStorage.removeItem('token'); // Remove token from local storage
+        localStorage.removeItem('token'); 
         return true;
     } catch (error) {
         console.error('Error during logout:', error);
@@ -143,33 +139,9 @@ export async function updateUser(user) {
     }
 }
 
-export async function createCoffee(coffee) {
-    try {
-        const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
-        const res = await fetch('http://localhost:8085/api/coffee/coffees', {
-            method: 'POST',
-            body: JSON.stringify(coffee),
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` // Incluir el token en los encabezados si es necesario
-            },
-        });
-
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-
-        return await res.json();
-    } catch (error) {
-        console.error('Error creating coffee:', error);
-        throw error;
-    }
-}
-
-
 export async function deleteCoffee(idCoffee) {
     try {
-        const res = await fetch(`http://localhost:8085/api/coffee/deleteCoffee/${idCoffee}`, {
+        const res = await fetch(`http://localhost:8085/api/coffee/deleteCoffee?id_coffee=${idCoffee}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -187,38 +159,61 @@ export async function deleteCoffee(idCoffee) {
         throw error;
     }
 }
-  
-  export async function updateCoffee(coffee) {
-    try {
-      const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
-      const res = await fetch('http://localhost:8085/api/coffee/updateCoffee', {
-        method: 'PUT',
-        body: JSON.stringify(coffee),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` // Incluir el token en los encabezados si es necesario
-        },
-      });
-  
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-  
-      return await res.json();
-    } catch (error) {
-      console.error('Error updating coffee:', error);
-      throw error;
-    }
-  }
 
-  export async function lockUser(username) {
+export async function updateCoffee(coffee) {
     try {
-        const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+        const token = localStorage.getItem('token'); 
+        const res = await fetch('http://localhost:8085/api/coffee/updateCoffee', {
+            method: 'PUT',
+            body: JSON.stringify(coffee),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            },
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        return await res.json();
+    } catch (error) {
+        console.error('Error updating coffee:', error);
+        throw error;
+    }
+}
+
+export async function createCoffee(coffee) {
+    try {
+        const token = localStorage.getItem('token'); 
+        const res = await fetch('http://localhost:8085/api/coffee/coffees', {
+            method: 'POST',
+            body: JSON.stringify(coffee),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        return await res.json();
+    } catch (error) {
+        console.error('Error creating coffee:', error);
+        throw error;
+    }
+}
+
+export async function lockUser(username) {
+    try {
+        const token = localStorage.getItem('token'); 
         const res = await fetch(`http://localhost:8085/api/auth/lock?username=${username}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}` // Incluir el token en los encabezados
+                "Authorization": `Bearer ${token}`
             }
         });
 
@@ -226,12 +221,12 @@ export async function deleteCoffee(idCoffee) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
 
-        // Si la respuesta no es JSON, devuelve el texto de la respuesta
+        
         const responseText = await res.text();
         try {
-            return JSON.parse(responseText); // Intenta parsear como JSON
+            return JSON.parse(responseText); 
         } catch (e) {
-            return responseText; // Si no es JSON, devuelve el texto
+            return responseText; 
         }
     } catch (error) {
         console.error('Error locking user:', error);
@@ -241,12 +236,12 @@ export async function deleteCoffee(idCoffee) {
 
 export async function unlockUser(username) {
     try {
-        const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+        const token = localStorage.getItem('token'); 
         const res = await fetch(`http://localhost:8085/api/auth/unlock?username=${username}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}` // Incluir el token en los encabezados
+                "Authorization": `Bearer ${token}`
             }
         });
 
@@ -254,12 +249,11 @@ export async function unlockUser(username) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
 
-        // Si la respuesta no es JSON, devuelve el texto de la respuesta
         const responseText = await res.text();
         try {
-            return JSON.parse(responseText); // Intenta parsear como JSON
+            return JSON.parse(responseText); 
         } catch (e) {
-            return responseText; // Si no es JSON, devuelve el texto
+            return responseText; 
         }
     } catch (error) {
         console.error('Error unlocking user:', error);
@@ -267,4 +261,4 @@ export async function unlockUser(username) {
     }
 }
 
-  
+

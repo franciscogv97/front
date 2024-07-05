@@ -6,7 +6,7 @@ body, html {
 
 .coffee-list-container {
   padding: 20px;
-  min-height: calc(100vh - 80px); /* Ajusta 80px según la altura de tu footer */
+  min-height: calc(100vh - 80px); 
   display: flex;
   flex-direction: column;
 }
@@ -21,17 +21,17 @@ body, html {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  flex-grow: 1; /* Permite que la lista crezca y ocupe el espacio disponible */
+  flex-grow: 1; 
 }
 
 .coffee-item {
-  flex: 0 0 calc(25% - 20px); /* 4 cards per row with 20px gap */
+  flex: 0 0 calc(25% - 20px);
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  margin-bottom:  360px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -72,13 +72,13 @@ body, html {
 
 @media (max-width: 768px) {
   .coffee-item {
-    flex: 0 0 calc(50% - 20px); /* 2 cards per row on small screens */
+    flex: 0 0 calc(50% - 20px); 
   }
 }
 
 @media (max-width: 480px) {
   .coffee-item {
-    flex: 0 0 100%; /* 1 card per row on very small screens */
+    flex: 0 0 100%; 
   }
 }
 
