@@ -203,7 +203,13 @@ export async function deleteCoffee(idCoffee) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
 
-        return await res.json();
+        // Si la respuesta no es JSON, devuelve el texto de la respuesta
+        const responseText = await res.text();
+        try {
+            return JSON.parse(responseText); // Intenta parsear como JSON
+        } catch (e) {
+            return responseText; // Si no es JSON, devuelve el texto
+        }
     } catch (error) {
         console.error('Error locking user:', error);
         throw error;
@@ -225,7 +231,13 @@ export async function unlockUser(username) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
 
-        return await res.json();
+        // Si la respuesta no es JSON, devuelve el texto de la respuesta
+        const responseText = await res.text();
+        try {
+            return JSON.parse(responseText); // Intenta parsear como JSON
+        } catch (e) {
+            return responseText; // Si no es JSON, devuelve el texto
+        }
     } catch (error) {
         console.error('Error unlocking user:', error);
         throw error;
