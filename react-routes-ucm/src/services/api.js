@@ -77,7 +77,13 @@ export async function registerAccount(register) {
 
 export async function getCoffeeList() {
     try {
-        const res = await fetch("http://localhost:8085/api/coffee/list");
+        const res = await fetch("http://localhost:8085/api/coffee/list", {
+            headers: {
+                "Content-Type": "application/json",
+                // Agregar el encabezado de autorización si es necesario
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            }
+        });
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
         }
@@ -133,23 +139,24 @@ export async function updateUser(user) {
 
 export async function deleteCoffee(idCoffee) {
     try {
-      const res = await fetch(`http://localhost:8085/api/coffee/deleteCoffee/${idCoffee}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-  
-      return await res.json();
+        const res = await fetch(`http://localhost:8085/api/coffee/deleteCoffee/${idCoffee}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        return await res.json();
     } catch (error) {
-      console.error('Error deleting coffee:', error);
-      throw error;
+        console.error('Error deleting coffee:', error);
+        throw error;
     }
-  }
+}
   
   export async function updateCoffee(coffee) {
     try {

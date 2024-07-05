@@ -11,7 +11,7 @@ function Page2() {
                     <section>
                         <h2>Nuestra Historia</h2>
                         <p>
-                            Bienvenidos a [Nombre de la Cafetería], un lugar donde el aroma del café se mezcla con la pasión y dedicación de nuestros baristas. Fundada en [año de fundación], nuestra cafetería ha sido un refugio acogedor para los amantes del café, ofreciendo una experiencia única en cada taza.
+                            Bienvenidos a Sparrows, un lugar donde el aroma del café se mezcla con la pasión y dedicación de nuestros baristas. Fundada en 2022, nuestra cafetería ha sido un refugio acogedor para los amantes del café, ofreciendo una experiencia única en cada taza.
                         </p>
                     </section>
                     <section>
