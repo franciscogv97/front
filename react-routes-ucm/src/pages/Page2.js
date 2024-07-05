@@ -36,6 +36,18 @@ function Page2() {
                     </section>
                 </div>
             </div>
+
+            <div className="about-container">
+            <h1>INTEGRANTES</h1>
+                
+                    <section>
+                        <h2>Matias Nicolas Morales Vergara </h2>
+                        <h2>Francisco Ignacio Gonzalez Vidal</h2>
+  
+  
+                    </section>
+                    </div>
+             
         </>
     );
 }
