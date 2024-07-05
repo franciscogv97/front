@@ -70,6 +70,29 @@ body, html {
   border: none;
 }
 
+.testimonials {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.testimonials input {
+  width: calc(100% - 20px);
+  padding: 5px;
+  margin: 5px 10px;
+}
+
+.testimonials button {
+  display: block;
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
 @media (max-width: 768px) {
   .coffee-item {
     flex: 0 0 calc(50% - 20px); 

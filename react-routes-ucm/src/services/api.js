@@ -1,25 +1,5 @@
 import {jwtDecode} from 'jwt-decode';
 
-export async function getUsers() {
-    try {
-        const token = localStorage.getItem('token'); 
-        const res = await fetch("http://localhost:8085/api/auth/clientes", {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}` 
-            }
-        });
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        const data = await res.json();
-        console.log('Usuarios obtenidos:', data);
-        return data;
-    } catch (error) {
-        console.error('Error fetching users:', error);
-        return [];
-    }
-}
 
 export async function loginAccount(login) {
     try {
@@ -261,4 +241,65 @@ export async function unlockUser(username) {
     }
 }
 
+export async function getUsers() {
+    try {
+      const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+      const res = await fetch("http://localhost:8085/api/auth/clientes", {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}` // Incluir el token en los encabezados
+        }
+      });
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      const data = await res.json();
+      console.log('Usuarios obtenidos:', data); // Agregar un log para verificar los datos
+      return data;
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      return [];
+    }
+  }
+  
+  export async function getTestimonialsByCoffeeId(coffeeId) {
+    try {
+      const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+      const res = await fetch(`http://localhost:8085/api/testimonials/findByCoffeeId?coffeeId=${coffeeId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}` // Incluir el token en los encabezados
+        }
+      });
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      return await res.json();
+    } catch (error) {
+      console.error('Error fetching testimonials:', error);
+      throw error;
+    }
+  }
+  
+  export async function createTestimonial(testimonial) {
+    try {
+        const token = localStorage.getItem('token'); // Obtener el token del almacenamiento local
+        const res = await fetch('http://localhost:8085/api/testimonials/create', {
+            method: 'POST',
+            body: JSON.stringify(testimonial),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Incluir el token en los encabezados
+            },
+        });
 
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        return await res.json();
+    } catch (error) {
+        console.error('Error creating testimonial:', error);
+        throw error;
+    }
+}
